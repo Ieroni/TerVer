@@ -12,7 +12,6 @@ def calculate_probability():
 
     # Calculate the number of successful outcomes
     success_combinations = math.comb(painted_parts, selected_parts)
-
     probability = success_combinations / total_combinations
     return probability
 

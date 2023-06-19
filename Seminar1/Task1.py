@@ -1,57 +1,45 @@
-# Из колоды в 52 карты извлекаются случайным образом 4карты.
+# Из колоды в 52 карты (n) извлекаются случайным образом 4 карты (k).
 # a) Найти вероятность того, что все карты – крести.
-# б) Найти вероятность, что среди4-х карт окажется хотя бы один туз.
-
+# б) Найти вероятность, что среди 4-х карт окажется хотя бы один туз.
+import math
 import random
+n = 0
+k = 0
 
-def draw_cards():
-    deck = ['Ace of Clubs', '2 of Clubs', '3 of Clubs', '4 of Clubs', '5 of Clubs', '6 of Clubs',
-            '7 of Clubs', '8 of Clubs', '9 of Clubs', '10 of Clubs', 'Jack of Clubs', 'Queen of Clubs',
-            'King of Clubs', 'Ace of Diamonds', '2 of Diamonds', '3 of Diamonds', '4 of Diamonds',
-            '5 of Diamonds', '6 of Diamonds', '7 of Diamonds', '8 of Diamonds', '9 of Diamonds',
-            '10 of Diamonds', 'Jack of Diamonds', 'Queen of Diamonds', 'King of Diamonds', 'Ace of Hearts',
-            '2 of Hearts', '3 of Hearts', '4 of Hearts', '5 of Hearts', '6 of Hearts', '7 of Hearts',
-            '8 of Hearts', '9 of Hearts', '10 of Hearts', 'Jack of Hearts', 'Queen of Hearts', 'King of Hearts',
-            'Ace of Spades', '2 of Spades', '3 of Spades', '4 of Spades', '5 of Spades', '6 of Spades',
-            '7 of Spades', '8 of Spades', '9 of Spades', '10 of Spades', 'Jack of Spades', 'Queen of Spades',
-            'King of Spades']
+def combination (n,k):
+    return math.factorial(n)//(math.factorial(k)*math.factorial(n-k))
 
-    # Randomly select 4 cards from the deck
-    drawn_cards = random.sample(deck, 4)
+# all combination
+all_combinations = combination(52,4)
+print(f"all possible combinations: {all_combinations}")
 
-    return drawn_cards
+# ========== task A ================
+# elements = 4 from submn = 13
+kresti = combination(13,4)
+print(f"kresti combinations: {kresti}")
 
-def probability_all_clubs():
-    total_trials = 100000  # Number of trials to run
-    success_count = 0  # Count of trials where all cards are clubs
+# elements without = 39 and elems = 0; so comb2 = 1;
+#  success combination  = Krest * 1
+succs_combinationA = kresti
+print(f"success combinations A: {succs_combinationA}")
 
-    for _ in range(total_trials):
-        drawn_cards = draw_cards()
-        if all('Clubs' in card for card in drawn_cards):
-            success_count += 1
+# probability A
+ProbabilityA = succs_combinationA/all_combinations
+print(f"Probability A : {ProbabilityA}")
 
-    probability = success_count / total_trials
-    return probability
+# =========== Task B ===========
+# elements = 1 from submn = 4
+Tuz = combination(4,1)
+print(f"Tuz combinations: {Tuz}")
 
+# elements without = 48 and elems = 3
+neTuz = combination(48,3)
+print(f"neTuz combinations: {neTuz}")
 
-def probability_at_least_one_ace():
-    total_trials = 100000  # Number of trials to run
-    success_count = 0  # Count of trials where at least one ace is drawn
+# Combination
+succs_combinationB = Tuz*neTuz
+print(f"success combinations B: {succs_combinationB}")
 
-    for _ in range(total_trials):
-        drawn_cards = draw_cards()
-        if any('Ace' in card for card in drawn_cards):
-            success_count += 1
-
-    probability = success_count / total_trials
-    return probability
-
-
-# Main program
-print("Calculating probability that all cards are clubs...")
-prob_clubs = probability_all_clubs()
-print(f"Probability: {prob_clubs}")
-
-print("\nCalculating probability of at least one ace...")
-prob_ace = probability_at_least_one_ace()
-print(f"Probability: {prob_ace}")
+# probability B
+ProbabilityB = succs_combinationB/all_combinations
+print(f"Probability B: {ProbabilityB}")

@@ -8,12 +8,9 @@ def calculate_probability():
 
     # Generate all possible combinations of 3 numbers from 0 to 9
     combinations = list(itertools.combinations(range(10), 3))
-
     success_count = len(combinations)  # Count of successful outcomes
-
     probability = success_count / total_combinations
     return probability
-
 
 # Main program
 print("Calculating the probability of opening the door on the first try...")
