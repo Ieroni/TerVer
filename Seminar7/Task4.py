@@ -5,10 +5,10 @@
 # Третья группа: 57, 67, 49, 48, 47, 55, 66, 51, 54
 
 import numpy as np
-from scipy.stats import f_oneway
+from scipy.stats import kruskal
 
-def perform_one_way_anova(data):
-    statistic, p_value = f_oneway(*data)
+def perform_one_way_kruskal(data):
+    statistic, p_value = kruskal(*data)
     if p_value < alpha:
         print("Reject the null hypothesis. There are statistically significant differences among the groups.")
     else:
@@ -20,5 +20,5 @@ group2 = np.array([57, 58, 69, 48, 72, 70, 68, 71, 50, 53])
 group3 = np.array([57, 67, 49, 48, 47, 55, 66, 51, 54])
 alpha = 0.05
 
-# Perform the one-way ANOVA test
-perform_one_way_anova([group1, group2, group3])
+# Perform the one-way kruskal test
+perform_one_way_kruskal([group1, group2, group3])

@@ -6,10 +6,10 @@
 # 3е измерение через 30 минут: 130, 130, 120, 130, 125
 
 import numpy as np
-from scipy.stats import f_oneway
+from scipy.stats import friedmanchisquare
 
-def perform_repeated_measures_anova(data):
-    statistic, p_value = f_oneway(*data)
+def perform_repeated_measures_friedmanchisquare(data):
+    statistic, p_value = friedmanchisquare(*data)
     if p_value < alpha:
         print("Reject the null hypothesis. There are statistically significant differences.")
     else:
@@ -21,5 +21,5 @@ data = np.array([[150, 160, 165, 145, 155],
                  [130, 130, 120, 130, 125]])
 alpha = 0.05
 
-# Perform the repeated measures ANOVA test
-perform_repeated_measures_anova(data)
+# Perform the repeated measures kruskal test
+perform_repeated_measures_friedmanchisquare(data)
