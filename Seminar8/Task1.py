@@ -15,7 +15,8 @@ ks = np.array([401, 574, 874, 919, 459, 739, 653, 902, 746, 832])
 # Calculate covariance using elementary operations
 mean_zp = np.mean(zp)
 mean_ks = np.mean(ks)
-cov_e = np.sum((zp - mean_zp) * (ks - mean_ks)) / (len(zp) - 1)
+cov = np.mean(zp*ks) - mean_zp*mean_ks  #shifted formula
+cov_e = np.sum((zp - mean_zp) * (ks - mean_ks)) / (len(zp) - 1) #Unshifted formula
 
 # Calculate covariance using the cov function from numpy
 cov_np = np.cov(zp, ks, ddof=1)[0, 1]
@@ -31,7 +32,8 @@ corr_np = np.corrcoef(zp, ks)[0, 1]
 # Calculate Pearson correlation coefficient using the corr function from pandas
 corr_pd = pd.DataFrame({'zp': zp, 'ks': ks}).corr().iloc[0, 1]
 
-print("Covariance (Elementary):", cov_e)
+print("Covariance (Shifted):", cov)
+print("Covariance (UnShifted):", cov_e)
 print("Covariance (NumPy):", cov_np)
 print("Pearson correlation coefficient (Elementary):", corr_e)
 print("Pearson correlation coefficient (NumPy):", corr_np)
