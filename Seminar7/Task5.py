@@ -16,7 +16,7 @@ def perform_two_sided_t_test(sample, hypothesized_mean, alpha):
 
     # Calculate the critical t-value
     df = sample_size - 1
-    critical_t = t.ppf(alpha / 2, df)
+    critical_t = t.ppf(1 - alpha / 2, df)
 
     # Perform the two-sided test
     if np.abs(t_score) > critical_t:
