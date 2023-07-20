@@ -15,7 +15,7 @@ slope = 0
 
 # Perform gradient descent
 for _ in range(num_iterations):
-    slope_gradient = (-2/len(zp)) * np.sum(zp * (ks - slope * zp))
+    slope_gradient = (2/len(zp)) * np.sum(zp * (slope * zp - ks))
     slope -= learning_rate * slope_gradient
 
 linear_regression_coefficient = slope

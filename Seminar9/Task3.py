@@ -17,8 +17,8 @@ intercept = 0
 
 # Perform gradient descent
 for _ in range(num_iterations):
-    slope_gradient = (-2 / len(zp)) * np.sum(zp * (ks - (slope * zp + intercept)))
-    intercept_gradient = (-2 / len(zp)) * np.sum(ks - (slope * zp + intercept))
+    slope_gradient = (2 / len(zp)) * np.sum(zp * ((slope * zp + intercept) - ks))
+    intercept_gradient = (2 / len(zp)) * np.sum((slope * zp + intercept) - ks)
 
     slope -= learning_rate * slope_gradient
     intercept -= learning_rate * intercept_gradient
